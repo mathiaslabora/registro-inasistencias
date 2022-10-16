@@ -22,6 +22,9 @@ import javax.swing.JTextPane;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JCalendar;
 import com.toedter.components.JLocaleChooser;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class RegistroFalta extends JFrame {
 
@@ -76,28 +79,26 @@ public class RegistroFalta extends JFrame {
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Arial", Font.PLAIN, 18));
-		textField.setBounds(173, 96, 220, 38);
+		textField.setBounds(173, 111, 220, 38);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Cedula:");
-		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblNewLabel.setBounds(85, 96, 78, 38);
+		lblNewLabel.setBounds(85, 111, 78, 38);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNombre.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblNombre.setBounds(457, 96, 78, 38);
+		lblNombre.setBounds(454, 111, 78, 38);
 		contentPane.add(lblNombre);
 		
 		JLabel lblNewLabel_1 = new JLabel("...");
 		lblNewLabel_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(558, 96, 304, 38);
+		lblNewLabel_1.setBounds(555, 111, 304, 38);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblMotivo = new JLabel("Motivo:");
@@ -113,55 +114,96 @@ public class RegistroFalta extends JFrame {
 		contentPane.add(textPane);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(173, 197, 220, 38);
+		dateChooser.setBounds(173, 208, 220, 38);
 		contentPane.add(dateChooser);
 		
 		JDateChooser dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(545, 197, 220, 38);
+		dateChooser_1.setBounds(542, 208, 220, 38);
 		contentPane.add(dateChooser_1);
 		
 		JLabel lblDesde = new JLabel("Desde:");
-		lblDesde.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblDesde.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDesde.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblDesde.setBounds(85, 197, 78, 38);
+		lblDesde.setBounds(85, 208, 78, 38);
 		contentPane.add(lblDesde);
 		
 		JLabel lblHasta = new JLabel("Hasta:");
-		lblHasta.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblHasta.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblHasta.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblHasta.setBounds(457, 197, 78, 38);
+		lblHasta.setBounds(454, 208, 78, 38);
 		contentPane.add(lblHasta);
 		
 		JTextPane textPane_1 = new JTextPane();
 		textPane_1.setFont(new Font("Arial", Font.PLAIN, 18));
-		textPane_1.setBounds(173, 418, 610, 38);
+		textPane_1.setBounds(173, 431, 610, 38);
 		contentPane.add(textPane_1);
 		
 		JLabel lblGrupos = new JLabel("Grupos:");
-		lblGrupos.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblGrupos.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblGrupos.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblGrupos.setBounds(85, 418, 78, 38);
+		lblGrupos.setBounds(85, 431, 78, 38);
 		contentPane.add(lblGrupos);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUsuario.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblUsuario.setBounds(85, 491, 78, 38);
+		lblUsuario.setBounds(85, 500, 78, 38);
 		contentPane.add(lblUsuario);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("...");
 		lblNewLabel_1_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel_1_1.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblNewLabel_1_1.setBounds(173, 491, 304, 38);
+		lblNewLabel_1_1.setBounds(173, 500, 304, 38);
 		contentPane.add(lblNewLabel_1_1);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("REGISTRO DE INASISTENCIA DOCENTE");
 		lblNewLabel_1_1_1.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblNewLabel_1_1_1.setBounds(285, 28, 359, 38);
 		contentPane.add(lblNewLabel_1_1_1);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		menuBar.setBackground(SystemColor.activeCaption);
+		menuBar.setBounds(0, 0, 59, 31);
+		contentPane.add(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Menu");
+		mnNewMenu.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		mnNewMenu.setBackground(SystemColor.activeCaption);
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Volver a Inicio");
+		mntmNewMenuItem_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		mnNewMenu.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Cerrar Sesi\u00F3n");
+		mntmNewMenuItem.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		mnNewMenu.add(mntmNewMenuItem);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBackground(Color.BLACK);
+		separator_1.setBounds(66, 268, 813, 1);
+		contentPane.add(separator_1);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBackground(Color.BLACK);
+		separator_2.setBounds(66, 407, 813, 1);
+		contentPane.add(separator_2);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBackground(Color.BLACK);
+		separator_3.setBounds(66, 491, 813, 1);
+		contentPane.add(separator_3);
+		
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setOrientation(SwingConstants.VERTICAL);
+		separator_4.setBounds(433, 76, 1, 193);
+		contentPane.add(separator_4);
+		
+		JSeparator separator_5 = new JSeparator();
+		separator_5.setBackground(Color.BLACK);
+		separator_5.setBounds(66, 76, 813, 1);
+		contentPane.add(separator_5);
 	}
 }
