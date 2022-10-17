@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,12 +27,22 @@ import com.toedter.components.JLocaleChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JComboBox;
+import javax.swing.JTabbedPane;
 
 public class RegistroFalta extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textFieldCedula;
+	private JLabel lblUsuarioActual;
+	private JComboBox cmbxDocente;
+	private JDateChooser dateHasta;
+	private JDateChooser dateDesde;
+	private JTextPane textPaneMotivo;
+	private JTextPane textPaneGrupos;
 	
+	//formateador de fecha
+	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -77,30 +89,6 @@ public class RegistroFalta extends JFrame {
 		separator.setBounds(66, 173, 813, 1);
 		contentPane.add(separator);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 18));
-		textField.setBounds(173, 111, 220, 38);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblNewLabel = new JLabel("Cedula:");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblNewLabel.setBounds(85, 111, 78, 38);
-		contentPane.add(lblNewLabel);
-		
-		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNombre.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblNombre.setBounds(454, 111, 78, 38);
-		contentPane.add(lblNombre);
-		
-		JLabel lblNewLabel_1 = new JLabel("...");
-		lblNewLabel_1.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(555, 111, 304, 38);
-		contentPane.add(lblNewLabel_1);
-		
 		JLabel lblMotivo = new JLabel("Motivo:");
 		lblMotivo.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblMotivo.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -108,18 +96,18 @@ public class RegistroFalta extends JFrame {
 		lblMotivo.setBounds(85, 279, 78, 38);
 		contentPane.add(lblMotivo);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setFont(new Font("Arial", Font.PLAIN, 18));
-		textPane.setBounds(173, 297, 610, 96);
-		contentPane.add(textPane);
+		textPaneMotivo = new JTextPane();
+		textPaneMotivo.setFont(new Font("Arial", Font.PLAIN, 18));
+		textPaneMotivo.setBounds(173, 297, 610, 96);
+		contentPane.add(textPaneMotivo);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(173, 208, 220, 38);
-		contentPane.add(dateChooser);
+		dateDesde =  new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
+		dateDesde.setBounds(173, 208, 220, 38);
+		contentPane.add(dateDesde);
 		
-		JDateChooser dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(542, 208, 220, 38);
-		contentPane.add(dateChooser_1);
+		dateHasta = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
+		dateHasta.setBounds(565, 208, 220, 38);
+		contentPane.add(dateHasta);
 		
 		JLabel lblDesde = new JLabel("Desde:");
 		lblDesde.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -130,13 +118,13 @@ public class RegistroFalta extends JFrame {
 		JLabel lblHasta = new JLabel("Hasta:");
 		lblHasta.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblHasta.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblHasta.setBounds(454, 208, 78, 38);
+		lblHasta.setBounds(477, 208, 78, 38);
 		contentPane.add(lblHasta);
 		
-		JTextPane textPane_1 = new JTextPane();
-		textPane_1.setFont(new Font("Arial", Font.PLAIN, 18));
-		textPane_1.setBounds(173, 431, 610, 38);
-		contentPane.add(textPane_1);
+		textPaneGrupos = new JTextPane();
+		textPaneGrupos.setFont(new Font("Arial", Font.PLAIN, 18));
+		textPaneGrupos.setBounds(173, 431, 610, 38);
+		contentPane.add(textPaneGrupos);
 		
 		JLabel lblGrupos = new JLabel("Grupos:");
 		lblGrupos.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -144,22 +132,22 @@ public class RegistroFalta extends JFrame {
 		lblGrupos.setBounds(85, 431, 78, 38);
 		contentPane.add(lblGrupos);
 		
-		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblUsuario.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblUsuario.setBounds(85, 500, 78, 38);
-		contentPane.add(lblUsuario);
+		JLabel lblUsr = new JLabel("Usuario:");
+		lblUsr.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblUsr.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUsr.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblUsr.setBounds(85, 500, 78, 38);
+		contentPane.add(lblUsr);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("...");
-		lblNewLabel_1_1.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNewLabel_1_1.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblNewLabel_1_1.setBounds(173, 500, 304, 38);
-		contentPane.add(lblNewLabel_1_1);
+		lblUsuarioActual = new JLabel("...");
+		lblUsuarioActual.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblUsuarioActual.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblUsuarioActual.setBounds(173, 500, 304, 38);
+		contentPane.add(lblUsuarioActual);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("REGISTRO DE INASISTENCIA DOCENTE");
 		lblNewLabel_1_1_1.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblNewLabel_1_1_1.setBounds(285, 28, 359, 38);
+		lblNewLabel_1_1_1.setBounds(288, 6, 359, 38);
 		contentPane.add(lblNewLabel_1_1_1);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -196,14 +184,78 @@ public class RegistroFalta extends JFrame {
 		separator_3.setBounds(66, 491, 813, 1);
 		contentPane.add(separator_3);
 		
-		JSeparator separator_4 = new JSeparator();
-		separator_4.setOrientation(SwingConstants.VERTICAL);
-		separator_4.setBounds(433, 76, 1, 193);
-		contentPane.add(separator_4);
+		JButton btnGuardarFalta = new JButton("Guardar");
+		btnGuardarFalta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				System.out.println("cedula: "+ textFieldCedula.getText());
+				System.out.println("motivo: "+ textPaneMotivo.getText());
+				System.out.println("grupos: "+ textPaneGrupos.getText());
+				System.out.println("desde: "+ dateFormat.format(dateDesde.getDate()));
+				System.out.println("hasta: "+ dateFormat.format(dateHasta.getDate()));
+				
+			}
+		});
+		btnGuardarFalta.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnGuardarFalta.setBounds(625, 508, 158, 38);
+		contentPane.add(btnGuardarFalta);
 		
-		JSeparator separator_5 = new JSeparator();
-		separator_5.setBackground(Color.BLACK);
-		separator_5.setBounds(66, 76, 813, 1);
-		contentPane.add(separator_5);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBackground(SystemColor.activeCaption);
+		tabbedPane.setFont(new Font("Arial", Font.PLAIN, 10));
+		tabbedPane.setBounds(403, 54, 379, 102);
+		contentPane.add(tabbedPane);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(SystemColor.activeCaption);
+		tabbedPane.addTab("Buscar por Nombre", null, panel_2, null);
+		panel_2.setLayout(null);
+		
+		cmbxDocente = new JComboBox();
+		cmbxDocente.setBounds(120, 21, 220, 35);
+		panel_2.add(cmbxDocente);
+		
+		JLabel lblDocente = new JLabel("Nombre:");
+		lblDocente.setBounds(21, 25, 78, 27);
+		panel_2.add(lblDocente);
+		lblDocente.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDocente.setFont(new Font("Arial", Font.PLAIN, 18));
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(null);
+		panel_1.setBackground(SystemColor.activeCaption);
+		tabbedPane.addTab("Buscar por Cedula", null, panel_1, null);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Cedula:");
+		lblNewLabel.setBounds(10, 27, 62, 22);
+		panel_1.add(lblNewLabel);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+		
+		textFieldCedula = new JTextField();
+		textFieldCedula.setBounds(82, 19, 184, 38);
+		panel_1.add(textFieldCedula);
+		textFieldCedula.setFont(new Font("Arial", Font.PLAIN, 18));
+		textFieldCedula.setColumns(10);
+		
+		JButton btnBuscarCedula = new JButton("Buscar");
+		btnBuscarCedula.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnBuscarCedula.setBounds(276, 19, 88, 38);
+		panel_1.add(btnBuscarCedula);
+		
+		JLabel lblUsuarioActual_1 = new JLabel("...");
+		lblUsuarioActual_1.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblUsuarioActual_1.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblUsuarioActual_1.setBounds(106, 125, 266, 38);
+		contentPane.add(lblUsuarioActual_1);
+		
+		JLabel lblDocente_1 = new JLabel("Docente seleccionado:");
+		lblDocente_1.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblDocente_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDocente_1.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblDocente_1.setBounds(106, 84, 220, 38);
+		contentPane.add(lblDocente_1);
 	}
 }
