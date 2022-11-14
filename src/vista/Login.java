@@ -1,10 +1,13 @@
-package sistemaInasistencias;
+package vista;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import persistencia.Metodos;
+
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -16,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
@@ -26,28 +30,10 @@ import javax.swing.DebugGraphics;
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField txtDocumento;
+	private JPasswordField passwordLogin;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public Login() {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,53 +61,62 @@ public class Login extends JFrame {
 		btnX.setBounds(554, 0, 46, 50);
 		contentPane.add(btnX);
 		
-		JButton btnNewButton = new JButton("INGRESAR");
-		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnNewButton.setBounds(217, 472, 163, 50);
-		contentPane.add(btnNewButton);
+		JButton btnIngresar = new JButton("INGRESAR");
+		btnIngresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(Metodos.login(txtDocumento.getText(), passwordLogin.getText())) {
+					Menu menu= new Menu();
+					menu.setVisible(true);
+					setVisible(false);
+					
+				}else {
+					JOptionPane.showMessageDialog(null, "Documento o contraseña incorrectos, reintente...");
+				}
+				
+				
+			}
+		});
+		btnIngresar.setFont(new Font("Georgia", Font.PLAIN, 20));
+		btnIngresar.setBounds(217, 472, 163, 50);
+		contentPane.add(btnIngresar);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-		textField.setBounds(137, 277, 310, 50);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtDocumento = new JTextField();
+		txtDocumento.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		txtDocumento.setBounds(137, 277, 310, 50);
+		contentPane.add(txtDocumento);
+		txtDocumento.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("REGISTRO DE FALTAS");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel.setBounds(179, 124, 226, 40);
+		lblNewLabel.setFont(new Font("Georgia", Font.PLAIN, 24));
+		lblNewLabel.setBounds(149, 73, 282, 40);
 		contentPane.add(lblNewLabel);
 		
 		JLabel its = new JLabel("ITS");
 		its.setHorizontalAlignment(SwingConstants.CENTER);
-		its.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		its.setBounds(179, 160, 226, 40);
+		its.setFont(new Font("Georgia", Font.PLAIN, 24));
+		its.setBounds(179, 118, 226, 40);
 		contentPane.add(its);
 		
-		JLabel lblCorreo = new JLabel("Correo");
-		lblCorreo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCorreo.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		lblCorreo.setBounds(137, 245, 129, 31);
-		contentPane.add(lblCorreo);
+		JLabel lblDocumento = new JLabel("Documento");
+		lblDocumento.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDocumento.setFont(new Font("Georgia", Font.PLAIN, 15));
+		lblDocumento.setBounds(137, 245, 129, 31);
+		contentPane.add(lblDocumento);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
 		lblContrasea.setHorizontalAlignment(SwingConstants.LEFT);
-		lblContrasea.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		lblContrasea.setFont(new Font("Georgia", Font.PLAIN, 15));
 		lblContrasea.setBounds(137, 347, 129, 31);
 		contentPane.add(lblContrasea);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(137, 377, 310, 50);
-		contentPane.add(passwordField);
+		passwordLogin = new JPasswordField();
+		passwordLogin.setBounds(137, 377, 310, 50);
+		contentPane.add(passwordLogin);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBackground(new Color(0, 0, 0));
 		separator.setBounds(100, 229, 404, 5);
 		contentPane.add(separator);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\mathi\\eclipse-workspace\\Proyecto-Final\\assets\\3.png"));
-		lblNewLabel_1.setBounds(246, 33, 96, 93);
-		contentPane.add(lblNewLabel_1);
 	}
 }
