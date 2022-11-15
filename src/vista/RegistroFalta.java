@@ -74,7 +74,7 @@ public class RegistroFalta extends JFrame {
 		setResizable(false);
 		setBounds(350, 10, 950, 600);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
+		contentPane.setBackground(new Color(185,217,194));
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		// coloca la ventana centrada en la pantalla:
 		setLocationRelativeTo(null);

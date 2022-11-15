@@ -1,10 +1,12 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +16,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Inasistencia;
+import persistencia.Metodos;
+
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import java.awt.event.ActionListener;
@@ -22,8 +28,9 @@ import java.awt.event.ActionEvent;
 public class ConsultasAdministYDirector extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textFieldCiDocente;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JTextArea textAreaInsertResult;
 	/**
 	 * Launch the application.
 	 */
@@ -50,7 +57,7 @@ public class ConsultasAdministYDirector extends JFrame {
 		setResizable(false);
 		setBounds(350, 10, 950, 600);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
+		contentPane.setBackground(new Color(185,217,194));
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		// coloca la ventana centrada en la pantalla:
 		setLocationRelativeTo(null);
@@ -72,7 +79,7 @@ public class ConsultasAdministYDirector extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("C.I.:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(88, 129, 39, 30);
+		lblNewLabel.setBounds(45, 117, 39, 30);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblRegistroNuevoFuncionario = new JLabel("Consultas");
@@ -81,8 +88,24 @@ public class ConsultasAdministYDirector extends JFrame {
 		contentPane.add(lblRegistroNuevoFuncionario);
 		
 		JButton btnNewButton = new JButton("Consultar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ArrayList<Inasistencia> inasistencias = new ArrayList();
+				inasistencias = Metodos.obtenerInasistenciasDocentes(textFieldCiDocente.getText());
+				if(inasistencias.size()>0) {
+				for (int i = 0; i < inasistencias.size(); i++) {
+					textAreaInsertResult.append(inasistencias.get(i).getMotivoInasistencia());
+				}
+				}else {
+					textAreaInsertResult.append("NO SE ENCONTRARON RESULTADOS O EL DOCUMENTO ESTA EQUIVOCADO");
+				}
+			}
+		});
+		
+	
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(687, 488, 200, 30);
+		btnNewButton.setBounds(45, 492, 200, 30);
 		contentPane.add(btnNewButton);
 		
 		JButton btnVolver = new JButton("Volver");
@@ -94,41 +117,41 @@ public class ConsultasAdministYDirector extends JFrame {
 			}
 		});
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnVolver.setBounds(687, 543, 200, 30);
+		btnVolver.setBounds(45, 547, 200, 30);
 		contentPane.add(btnVolver);
 		
 		JLabel lblConsultaInasistenciasDocentes = new JLabel("Consulta inasistencias docentes:");
 		lblConsultaInasistenciasDocentes.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblConsultaInasistenciasDocentes.setBounds(88, 89, 283, 30);
+		lblConsultaInasistenciasDocentes.setBounds(88, 159, 269, 30);
 		contentPane.add(lblConsultaInasistenciasDocentes);
 		
-		textField = new JTextField();
-		textField.setBounds(128, 132, 210, 29);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textFieldCiDocente = new JTextField();
+		textFieldCiDocente.setBounds(85, 120, 210, 29);
+		contentPane.add(textFieldCiDocente);
+		textFieldCiDocente.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(471, 110, 416, 353);
+		scrollPane.setBounds(354, 102, 569, 475);
 		contentPane.add(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
+		textAreaInsertResult = new JTextArea();
+		scrollPane.setViewportView(textAreaInsertResult);
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("");
 		buttonGroup.add(rdbtnNewRadioButton);
-		rdbtnNewRadioButton.setBackground(SystemColor.activeCaption);
-		rdbtnNewRadioButton.setBounds(45, 89, 29, 33);
+		rdbtnNewRadioButton.setBackground(new Color(185,217,194));
+		rdbtnNewRadioButton.setBounds(45, 159, 29, 33);
 		contentPane.add(rdbtnNewRadioButton);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("");
 		buttonGroup.add(rdbtnNewRadioButton_1);
-		rdbtnNewRadioButton_1.setBackground(SystemColor.activeCaption);
-		rdbtnNewRadioButton_1.setBounds(45, 190, 29, 33);
+		rdbtnNewRadioButton_1.setBackground(new Color(185,217,194));
+		rdbtnNewRadioButton_1.setBounds(45, 411, 29, 33);
 		contentPane.add(rdbtnNewRadioButton_1);
 		
 		JLabel lblConsultaListaDe = new JLabel("Consulta lista de docentes");
 		lblConsultaListaDe.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblConsultaListaDe.setBounds(88, 190, 283, 30);
+		lblConsultaListaDe.setBounds(88, 411, 250, 30);
 		contentPane.add(lblConsultaListaDe);
 	}
 }

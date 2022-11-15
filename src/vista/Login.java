@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import modelo.Usuarios;
 import persistencia.Metodos;
 
 import java.awt.Dialog.ModalExclusionType;
@@ -26,13 +27,15 @@ import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import javax.swing.DebugGraphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Login extends JFrame {
-
+	
 	private JPanel contentPane;
 	private JTextField txtDocumento;
 	private JPasswordField passwordLogin;
-
+	public static Usuarios usuario;
 	
 	public Login() {
 		setUndecorated(true);
@@ -41,7 +44,7 @@ public class Login extends JFrame {
 		setResizable(false);
 		setBounds(350, 10, 600, 600);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
+		contentPane.setBackground(new Color(185,217,194));
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		//coloca la ventana centrada en la pantalla:
 		setLocationRelativeTo(null);
@@ -61,14 +64,16 @@ public class Login extends JFrame {
 		btnX.setBounds(554, 0, 46, 50);
 		contentPane.add(btnX);
 		
+		
+		
 		JButton btnIngresar = new JButton("INGRESAR");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(Metodos.login(txtDocumento.getText(), passwordLogin.getText())) {
+					usuario = Metodos.obtenerUsuario(txtDocumento.getText());
 					Menu menu= new Menu();
 					menu.setVisible(true);
 					setVisible(false);
-					
 				}else {
 					JOptionPane.showMessageDialog(null, "Documento o contraseña incorrectos, reintente...");
 				}
@@ -81,6 +86,16 @@ public class Login extends JFrame {
 		contentPane.add(btnIngresar);
 		
 		txtDocumento = new JTextField();
+		txtDocumento.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+				if (!(Character.isDigit(caracter))) {
+					java.awt.Toolkit.getDefaultToolkit().beep();
+					e.consume();
+				}
+			}
+		});
 		txtDocumento.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		txtDocumento.setBounds(137, 277, 310, 50);
 		contentPane.add(txtDocumento);
@@ -118,5 +133,9 @@ public class Login extends JFrame {
 		separator.setBackground(new Color(0, 0, 0));
 		separator.setBounds(100, 229, 404, 5);
 		contentPane.add(separator);
+	}
+
+	public static Usuarios getUsuario() {
+		return usuario;
 	}
 }

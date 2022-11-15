@@ -1,10 +1,12 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -16,17 +18,21 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import modelo.Docente;
 import persistencia.Metodos;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 public class RegistroDocente extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldCedula;
 	private JTextField textFieldName;
+	private JTextField textFieldNameMod;
 
 	public RegistroDocente() {
 		setUndecorated(true);
@@ -35,7 +41,7 @@ public class RegistroDocente extends JFrame {
 		setResizable(false);
 		setBounds(350, 10, 950, 600);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
+		contentPane.setBackground(new Color(185,217,194));
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		// coloca la ventana centrada en la pantalla:
 		setLocationRelativeTo(null);
@@ -57,17 +63,17 @@ public class RegistroDocente extends JFrame {
 
 		JLabel lblNewLabel = new JLabel("Cedula Identidad");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel.setBounds(209, 145, 172, 30);
+		lblNewLabel.setBounds(26, 225, 152, 30);
 		contentPane.add(lblNewLabel);
 
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNombre.setBounds(209, 217, 172, 30);
+		lblNombre.setBounds(26, 308, 123, 30);
 		contentPane.add(lblNombre);
 
-		JLabel lblRegistroNuevoFuncionario = new JLabel("Registro nuevo Docente");
+		JLabel lblRegistroNuevoFuncionario = new JLabel("Registrar nuevo Docente");
 		lblRegistroNuevoFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblRegistroNuevoFuncionario.setBounds(265, 45, 379, 50);
+		lblRegistroNuevoFuncionario.setBounds(58, 54, 341, 50);
 		contentPane.add(lblRegistroNuevoFuncionario);
 
 		JButton btnNewButton = new JButton("Registrar");
@@ -107,7 +113,7 @@ public class RegistroDocente extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(288, 323, 293, 30);
+		btnNewButton.setBounds(26, 410, 198, 30);
 		contentPane.add(btnNewButton);
 
 		JButton btnVolver = new JButton("Volver");
@@ -119,19 +125,68 @@ public class RegistroDocente extends JFrame {
 			}
 		});
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnVolver.setBounds(288, 380, 293, 30);
+		btnVolver.setBounds(674, 527, 198, 30);
 		contentPane.add(btnVolver);
 
 		textFieldCedula = new JTextField();
 		textFieldCedula.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textFieldCedula.setBounds(374, 133, 270, 42);
+		textFieldCedula.setBounds(191, 213, 229, 42);
 		contentPane.add(textFieldCedula);
 		textFieldCedula.setColumns(10);
 
 		textFieldName = new JTextField();
 		textFieldName.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textFieldName.setColumns(10);
-		textFieldName.setBounds(374, 206, 270, 42);
+		textFieldName.setBounds(191, 297, 229, 42);
 		contentPane.add(textFieldName);
+		
+		JLabel lblRegistroNuevoFuncionario_1 = new JLabel("Modificar Docente");
+		lblRegistroNuevoFuncionario_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblRegistroNuevoFuncionario_1.setBounds(547, 54, 256, 50);
+		contentPane.add(lblRegistroNuevoFuncionario_1);
+		
+		textFieldNameMod = new JTextField();
+		textFieldNameMod.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textFieldNameMod.setColumns(10);
+		textFieldNameMod.setBounds(643, 310, 229, 42);
+		contentPane.add(textFieldNameMod);
+		
+		JLabel lblNombre_1 = new JLabel("Nombre");
+		lblNombre_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNombre_1.setBounds(478, 321, 123, 30);
+		contentPane.add(lblNombre_1);
+		
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnModificar.setBounds(478, 410, 198, 30);
+		contentPane.add(btnModificar);
+		
+		JComboBox comboDocente = new JComboBox();
+		comboDocente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+			}
+			
+		});
+		comboDocente.setBounds(643, 213, 229, 42);
+		contentPane.add(comboDocente);
+		ArrayList<Docente> docente = new ArrayList<>();
+		docente = Metodos.obtenerDocentes();
+		for (int i = 0; i < docente.size(); i++) {
+			comboDocente.addItem(docente.get(i).getNombre()+"-"+docente.get(i).getCi());
+		}
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Docente");
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_1_1.setBounds(478, 228, 152, 30);
+		contentPane.add(lblNewLabel_1_1);
+		
+		JSeparator separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setBounds(449, 109, 2, 462);
+		contentPane.add(separator);
 	}
 }

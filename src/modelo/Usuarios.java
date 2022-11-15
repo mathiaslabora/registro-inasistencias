@@ -1,13 +1,18 @@
 package modelo;
 
 public class Usuarios {
-	private double ci;
+	private int ci;
 	private String nombre;
 	private int rol;
 	private String pass;
 	
 	
-	public Usuarios(double ci, String nombre, int rol, String pass) {
+	public Usuarios() {
+		super();
+	}
+
+
+	public Usuarios(int ci, String nombre, int rol, String pass) {
 		super();
 		this.ci = ci;
 		this.nombre = nombre;
@@ -16,10 +21,10 @@ public class Usuarios {
 	}
 	
 	
-	public double getCi() {
+	public int getCi() {
 		return ci;
 	}
-	public void setCi(double ci) {
+	public void setCi(int ci) {
 		this.ci = ci;
 	}
 	public String getNombre() {
