@@ -1,4 +1,3 @@
-/persistencia/
-/vista/
-/modelo/
 /controlador/
+/vista/
+/persistencia/
